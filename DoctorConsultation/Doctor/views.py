@@ -30,7 +30,7 @@ def addDoctor(request):
 
 @api_view(['POST'])
 def updateDoctor(request,pk):
-    doctor = Doctor.objects.all().get(id=pk)
+    doctor = Doctor.objects.get(id=pk)
     serializer = DoctorSerializer(instance=doctor,data=request.data)
     if serializer.is_valid(): 
         serializer.save()
@@ -38,7 +38,7 @@ def updateDoctor(request,pk):
 
 @api_view(['DELETE'])
 def deleteDoctor(request,pk):
-    doctor = Doctor.objects.all().get(id=pk)
+    doctor = Doctor.objects.get(id=pk)
     doctor.delete()
     return Response('Doctor Deleted')
 
@@ -50,7 +50,7 @@ def clinicList(request):
     
 @api_view(['GET'])
 def clinicDetail(request,pk):
-    clinic = Clinic.objects.all().get(id=pk)
+    clinic = Clinic.objects.get(id=pk)
     serializer = ClinicSerializer(clinic)
     return Response(serializer.data)
     
@@ -63,7 +63,7 @@ def addClinic(request):
 
 @api_view(['POST'])
 def updateClinic(request,pk):
-    clinic = Clinic.objects.all().get(id=pk)
+    clinic = Clinic.objects.get(id=pk)
     serializer = ClinicSerializer(instance=clinic,data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -71,6 +71,6 @@ def updateClinic(request,pk):
 
 @api_view(['DELETE'])
 def deleteClinic(request,pk):
-    clinic = Clinic.objects.all().get(id=pk)
+    clinic = Clinic.objects.get(id=pk)
     clinic.delete()
     return Response('Clinic Deleted')
